@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
@@ -12,10 +8,20 @@ namespace UwpConsole
     {
         static void Main(string[] args)
         {
-            Console.Write("Please enter the title for your notification: ");
-            string title = Console.ReadLine();
-            Console.Write("\nPlease enter the content for you notification: ");
-            string content = Console.ReadLine();
+            string content, title;
+            if (args.Length == 2)
+            {
+                title = args[0];
+                content = args[1];
+            }
+            else
+            {
+                Console.Write("\nPlease enter the content for you notification: ");
+                content = Console.ReadLine();
+                Console.Write("Please enter the title for your notification: ");
+                title = Console.ReadLine();
+            }
+
             Console.Write("\nSending notification...");
 
             ToastNotifier notifier = ToastNotificationManager.CreateToastNotifier();
